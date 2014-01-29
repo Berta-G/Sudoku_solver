@@ -10,15 +10,15 @@ class Cell
 	end
 
 	def filled_out?
-		value != 0
+		value > 0
 	end
+	
 
-	def candidates
-		(0..9).to_a - neighbours
-	end
-
-	def neighbours
-		ObjectSpace.each_object(Cell).select {|c| c.col == self.col || c.row == self.row || c.block == self.block}.map {|c| c.value}
+	def try_to_solve(neighbours)
+		return true if filled_out?
+		candidates = (1..9).to_a - neighbours
+		@value = candidates[0] if candidates.count == 1 
+		# p self if candidates.count == 0
 	end
 
 end
