@@ -20,17 +20,10 @@ class Grid
 	def solve_sudoku
 		while !solved? do
 			outstanding_before = outstanding_cells
-			
-		
 			@cells.each { |cell| cell.try_to_solve(neighbours(cell))}
-			puts "outstanding after= #{outstanding_cells}"
-			puts "outstanding before= #{outstanding_before}"
-			puts solved? ? "solved" : "not solved"
-			
 			raise "Not an easy sudoku" if outstanding_before == outstanding_cells
 		end	
 		print_sudoku 
-
 	end
 
 	def neighbours(cell)
@@ -39,10 +32,6 @@ class Grid
 
 	def print_sudoku
 		@cells.map {|n| n.value}.each_slice(9).map {|n| p n}
-	end
-
-	def block(x,y)
-		[x/3, y/3]
 	end
 
 	def outstanding_cells
