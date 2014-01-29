@@ -18,12 +18,10 @@ class Grid
 	end
 
 	def solve_sudoku
-		while !solved? do
 			outstanding_before = outstanding_cells
 			@cells.each { |cell| cell.try_to_solve(neighbours(cell))}
 			raise "Not an easy sudoku" if outstanding_before == outstanding_cells
-		end	
-		print_sudoku 
+			solved? ? print_sudoku : solve_sudoku
 	end
 
 	def neighbours(cell)
